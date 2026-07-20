@@ -8,9 +8,12 @@
     "scheme": "vitalstackfrontend",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "app.vitalstack.mobile",
+      "supportsTablet": true
     },
     "android": {
+      "package": "app.vitalstack.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -31,6 +34,14 @@
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
+        }
+      ],
+      "expo-secure-store",
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "VitalStack needs camera access to scan supplement barcodes.",
+          "enableCodeScanner": true
         }
       ]
     ],

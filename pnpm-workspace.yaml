@@ -1,0 +1,5 @@
+# pnpm 11 reads project settings from here (not the package.json "pnpm" field).
+# React Native / Metro / Babel assume a flat node_modules, so use a hoisted layout.
+nodeLinker: hoisted
+allowBuilds:
+  unrs-resolver: true
