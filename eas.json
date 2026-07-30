@@ -9,7 +9,7 @@
       "distribution": "internal",
       "channel": "development",
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://localhost:5000"
+        "EXPO_PUBLIC_API_URL": "http://localhost:55567"
       }
     },
     "preview": {

@@ -10,7 +10,11 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "bundleIdentifier": "app.vitalstack.mobile",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "VitalStack needs camera access to scan supplement barcodes.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "app.vitalstack.mobile",
@@ -20,7 +24,11 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "output": "static",
@@ -43,11 +51,24 @@
           "cameraPermissionText": "VitalStack needs camera access to scan supplement barcodes.",
           "enableCodeScanner": true
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "ab411d35-bf17-49cd-9233-73f82e629a40"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ab411d35-bf17-49cd-9233-73f82e629a40"
     }
   }
 }
