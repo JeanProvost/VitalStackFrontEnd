@@ -29,11 +29,16 @@ cp .env.example .env   # then fill in the values
 
 `.env` (all `EXPO_PUBLIC_*`, inlined at build time):
 
-| Var | Description |
-| --- | --- |
-| `EXPO_PUBLIC_API_URL` | Base URL of the .NET API, no trailing slash |
-| `EXPO_PUBLIC_COGNITO_USER_POOL_ID` | Cognito user pool id |
-| `EXPO_PUBLIC_COGNITO_CLIENT_ID` | Cognito app client id |
+| Var                                | Description                                 |
+| ---------------------------------- | ------------------------------------------- |
+| `EXPO_PUBLIC_API_URL`              | Base URL of the .NET API, no trailing slash |
+| `EXPO_PUBLIC_COGNITO_USER_POOL_ID` | Cognito user pool id                        |
+| `EXPO_PUBLIC_COGNITO_CLIENT_ID`    | Cognito app client id                       |
+
+For local backend development, use `http://localhost:port` from the web or iOS
+simulator. A physical device must use the development PC's LAN IPv4 address instead,
+for example `http://192.168.1.73:55567`, and must be on the same network. Restart Metro
+after changing `.env`.
 
 ## Run
 
