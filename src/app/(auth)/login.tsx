@@ -30,8 +30,10 @@ export default function LoginScreen() {
   return (
     <Screen scroll className="justify-center gap-four">
       <View className="gap-one">
-        <Text className="text-3xl font-bold text-fg dark:text-fg-dark">Welcome back</Text>
-        <Text className="text-base text-muted dark:text-muted-dark">Sign in to your stack.</Text>
+        <Text className="text-3xl font-bold text-text dark:text-dark-text">Welcome back</Text>
+        <Text className="text-base text-text-muted dark:text-dark-text-muted">
+          Sign in to your stack.
+        </Text>
       </View>
 
       <Input
@@ -54,10 +56,13 @@ export default function LoginScreen() {
       <Button label="Sign in" loading={submitting} onPress={onSubmit} />
 
       <View className="flex-row justify-between">
-        <Link href="/(auth)/forgot-password" className="text-sm text-brand">
+        <Link
+          href="/(auth)/forgot-password"
+          className="text-sm text-primary-dark dark:text-dark-primary"
+        >
           Forgot password?
         </Link>
-        <Link href="/(auth)/signup" className="text-sm text-brand">
+        <Link href="/(auth)/signup" className="text-sm text-primary-dark dark:text-dark-primary">
           Create account
         </Link>
       </View>

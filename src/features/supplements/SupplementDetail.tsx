@@ -1,9 +1,10 @@
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, Text, useColorScheme, View } from 'react-native';
 
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { getThemeColors } from '@/constants/theme';
 import {
   useRemoveSupplement,
   useSupplement,
@@ -13,6 +14,7 @@ import {
 /** Detail + inline edit (dosage/schedule) for one stack entry. */
 export function SupplementDetail({ id }: { id: string }) {
   const router = useRouter();
+  const palette = getThemeColors(useColorScheme());
   const { data, isLoading, isError } = useSupplement(id);
   const update = useUpdateSupplement(id);
   const remove = useRemoveSupplement();
@@ -23,7 +25,7 @@ export function SupplementDetail({ id }: { id: string }) {
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center">
-        <ActivityIndicator />
+        <ActivityIndicator color={palette.textMuted} />
       </View>
     );
   }
@@ -31,7 +33,9 @@ export function SupplementDetail({ id }: { id: string }) {
   if (isError || !data) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-base text-muted dark:text-muted-dark">Supplement not found.</Text>
+        <Text className="text-base text-text-muted dark:text-dark-text-muted">
+          Supplement not found.
+        </Text>
       </View>
     );
   }
@@ -39,8 +43,8 @@ export function SupplementDetail({ id }: { id: string }) {
   return (
     <View className="flex-1 gap-four pt-four">
       <View className="gap-two">
-        <Text className="text-sm text-muted dark:text-muted-dark">{data.brand}</Text>
-        <Text className="text-2xl font-bold text-fg dark:text-fg-dark">{data.name}</Text>
+        <Text className="text-sm text-text-muted dark:text-dark-text-muted">{data.brand}</Text>
+        <Text className="text-2xl font-bold text-text dark:text-dark-text">{data.name}</Text>
       </View>
 
       <Input

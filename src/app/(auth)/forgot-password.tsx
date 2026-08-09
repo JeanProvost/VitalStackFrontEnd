@@ -46,8 +46,8 @@ export default function ForgotPasswordScreen() {
   return (
     <Screen scroll className="justify-center gap-four">
       <View className="gap-one">
-        <Text className="text-3xl font-bold text-fg dark:text-fg-dark">Reset password</Text>
-        <Text className="text-base text-muted dark:text-muted-dark">
+        <Text className="text-3xl font-bold text-text dark:text-dark-text">Reset password</Text>
+        <Text className="text-base text-text-muted dark:text-dark-text-muted">
           {stage === 'request'
             ? 'Enter your email to get a reset code.'
             : `Enter the code sent to ${email} and a new password.`}
@@ -87,7 +87,10 @@ export default function ForgotPasswordScreen() {
         </>
       )}
 
-      <Link href="/(auth)/login" className="text-center text-sm text-brand">
+      <Link
+        href="/(auth)/login"
+        className="text-center text-sm text-primary-dark dark:text-dark-primary"
+      >
         Back to sign in
       </Link>
     </Screen>

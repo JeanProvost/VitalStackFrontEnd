@@ -20,7 +20,7 @@ export function Screen({
 }: ScreenProps) {
   const body = <View className={cn('flex-1 px-four', className)}>{children}</View>;
   return (
-    <SafeAreaView edges={edges} className="flex-1 bg-bg dark:bg-bg-dark">
+    <SafeAreaView edges={edges} className="flex-1 bg-bg dark:bg-dark-bg">
       {scroll ? (
         <ScrollView
           contentContainerClassName="grow px-four"

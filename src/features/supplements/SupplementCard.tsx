@@ -17,13 +17,16 @@ export function SupplementCard({ supplement }: { supplement: Supplement }) {
               contentFit="cover"
             />
           ) : (
-            <View className="h-12 w-12 rounded-xl bg-brand/15" />
+            <View className="h-12 w-12 rounded-xl bg-primary/15 dark:bg-dark-primary/15" />
           )}
           <View className="flex-1">
-            <Text className="text-base font-semibold text-fg dark:text-fg-dark" numberOfLines={1}>
+            <Text
+              className="text-base font-semibold text-text dark:text-dark-text"
+              numberOfLines={1}
+            >
               {supplement.name}
             </Text>
-            <Text className="text-sm text-muted dark:text-muted-dark" numberOfLines={1}>
+            <Text className="text-sm text-text-muted dark:text-dark-text-muted" numberOfLines={1}>
               {supplement.brand} · {supplement.dosage}
             </Text>
           </View>

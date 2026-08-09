@@ -2,33 +2,27 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
-  darkMode: 'media', // follows system preference
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // Brand + semantic tokens. Referenced as bg-brand, text-fg, etc.
-        brand: {
-          DEFAULT: '#208AEF',
-          fg: '#ffffff',
+        primary: { DEFAULT: '#F9DB61', dark: '#3D3410' },
+        tertiary: { DEFAULT: '#A6D323', dark: '#4A6108' },
+        bg: '#FAF8F2',
+        surface: '#FFFFFF',
+        text: { DEFAULT: '#1C1B16', muted: '#6E6A5E' },
+        border: '#E8E4D8',
+        error: '#E05B4C',
+        warning: '#E8A63D',
+        info: '#5B8DB8',
+        dark: {
+          bg: '#16150F',
+          surface: '#221F16',
+          primary: '#EFD36A',
+          text: '#F2EFE6',
+          'text-muted': '#9A958A',
+          border: '#343024',
         },
-        bg: {
-          DEFAULT: '#ffffff',
-          dark: '#000000',
-        },
-        surface: {
-          DEFAULT: '#F0F0F3',
-          dark: '#212225',
-        },
-        fg: {
-          DEFAULT: '#000000',
-          dark: '#ffffff',
-        },
-        muted: {
-          DEFAULT: '#60646C',
-          dark: '#B0B4BA',
-        },
-        danger: '#E5484D',
-        success: '#30A46C',
       },
       spacing: {
         // Mirrors src/constants/theme.ts Spacing scale (in px).

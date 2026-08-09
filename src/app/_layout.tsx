@@ -1,16 +1,16 @@
 import '@/global.css';
 
 import { QueryClientProvider } from '@tanstack/react-query';
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter, useSegments } from 'expo-router';
+import { DefaultTheme, Stack, ThemeProvider, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { queryClient } from '@/api/queryClient';
 import { ToastHost } from '@/components/ToastHost';
+import { Colors } from '@/constants/theme';
 import { useAuthStore } from '@/stores/auth';
 
 SplashScreen.preventAutoHideAsync();
@@ -33,7 +33,19 @@ function useProtectedRoute() {
 }
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const palette = Colors.light;
+  const navigationTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: palette.primaryForeground,
+      background: palette.background,
+      card: palette.surface,
+      text: palette.text,
+      border: palette.border,
+      notification: palette.error,
+    },
+  };
   const status = useAuthStore((s) => s.status);
   const hydrate = useAuthStore((s) => s.hydrate);
 
@@ -53,7 +65,7 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <ThemeProvider value={navigationTheme}>
             <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name="(auth)" />
               <Stack.Screen name="(tabs)" />
@@ -63,7 +75,7 @@ export default function RootLayout() {
               />
             </Stack>
             <ToastHost />
-            <StatusBar style="auto" />
+            <StatusBar style="dark" />
           </ThemeProvider>
         </QueryClientProvider>
       </SafeAreaProvider>

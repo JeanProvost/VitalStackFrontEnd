@@ -11,11 +11,11 @@ export default function ProfileScreen() {
 
   return (
     <Screen className="gap-four">
-      <Text className="pt-four text-2xl font-bold text-fg dark:text-fg-dark">Profile</Text>
+      <Text className="pt-four text-2xl font-bold text-text dark:text-dark-text">Profile</Text>
 
       <Card className="gap-one">
-        <Text className="text-sm text-muted dark:text-muted-dark">Signed in as</Text>
-        <Text className="text-base font-semibold text-fg dark:text-fg-dark">
+        <Text className="text-sm text-text-muted dark:text-dark-text-muted">Signed in as</Text>
+        <Text className="text-base font-semibold text-text dark:text-dark-text">
           {username ?? 'Unknown'}
         </Text>
       </Card>
