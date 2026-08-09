@@ -14,15 +14,17 @@ export function Dashboard() {
   return (
     <View className="flex-1 gap-four pt-four">
       <View className="gap-one">
-        <Text className="text-3xl font-bold text-fg dark:text-fg-dark">VitalStack</Text>
-        <Text className="text-base text-muted dark:text-muted-dark">
+        <Text className="text-3xl font-bold text-text dark:text-dark-text">VitalStack</Text>
+        <Text className="text-base text-text-muted dark:text-dark-text-muted">
           Optimize your supplement routine.
         </Text>
       </View>
 
       <Card className="gap-two">
-        <Text className="text-sm text-muted dark:text-muted-dark">Supplements in your stack</Text>
-        <Text className="text-3xl font-bold text-fg dark:text-fg-dark">
+        <Text className="text-sm text-text-muted dark:text-dark-text-muted">
+          Supplements in your stack
+        </Text>
+        <Text className="text-3xl font-bold text-text dark:text-dark-text">
           {isLoading ? '—' : count}
         </Text>
       </Card>
