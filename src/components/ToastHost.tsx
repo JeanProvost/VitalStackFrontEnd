@@ -5,9 +5,15 @@ import { cn } from '@/lib/utils';
 import { useUIStore, type ToastType } from '@/stores/ui';
 
 const bg: Record<ToastType, string> = {
-  error: 'bg-danger',
-  success: 'bg-success',
-  info: 'bg-brand',
+  error: 'bg-error',
+  success: 'bg-tertiary',
+  info: 'bg-info',
+};
+
+const text: Record<ToastType, string> = {
+  error: 'text-text',
+  success: 'text-tertiary-dark',
+  info: 'text-text',
 };
 
 /** App-wide toast overlay. Mounted once at the root. */
@@ -31,7 +37,7 @@ export function ToastHost() {
             accessibilityRole="alert"
             className={cn('rounded-xl px-four py-three shadow-lg', bg[t.type])}
           >
-            <Text className="text-base font-medium text-white">{t.message}</Text>
+            <Text className={cn('text-base font-medium', text[t.type])}>{t.message}</Text>
           </Pressable>
         ))}
       </View>

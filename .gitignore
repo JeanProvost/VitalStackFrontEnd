@@ -38,6 +38,9 @@ yarn-error.*
 
 example
 .env
+AGENTS.md
+DESIGN_TOKENS.md
+LESSONS.md
 
 # generated native folders
 /ios

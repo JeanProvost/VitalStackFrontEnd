@@ -46,9 +46,11 @@ export default function SignupScreen() {
   return (
     <Screen scroll className="justify-center gap-four">
       <View className="gap-one">
-        <Text className="text-3xl font-bold text-fg dark:text-fg-dark">Create account</Text>
-        <Text className="text-base text-muted dark:text-muted-dark">
-          {stage === 'details' ? 'Start optimizing your stack.' : `Enter the code sent to ${email}.`}
+        <Text className="text-3xl font-bold text-text dark:text-dark-text">Create account</Text>
+        <Text className="text-base text-text-muted dark:text-dark-text-muted">
+          {stage === 'details'
+            ? 'Start optimizing your stack.'
+            : `Enter the code sent to ${email}.`}
         </Text>
       </View>
 
@@ -71,7 +73,10 @@ export default function SignupScreen() {
             placeholder="At least 8 characters"
           />
           <Button label="Sign up" loading={submitting} onPress={onSignUp} />
-          <Link href="/(auth)/login" className="text-center text-sm text-brand">
+          <Link
+            href="/(auth)/login"
+            className="text-center text-sm text-primary-dark dark:text-dark-primary"
+          >
             Already have an account? Sign in
           </Link>
         </>

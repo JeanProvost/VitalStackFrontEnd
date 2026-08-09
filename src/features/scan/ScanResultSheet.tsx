@@ -1,6 +1,7 @@
-import { ActivityIndicator, Modal, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Modal, Pressable, Text, useColorScheme, View } from 'react-native';
 
 import { Button } from '@/components/Button';
+import { getThemeColors } from '@/constants/theme';
 import { useAddToStack, useProductByBarcode } from '@/features/scan/queries';
 
 interface ScanResultSheetProps {
@@ -16,34 +17,39 @@ interface ScanResultSheetProps {
 export function ScanResultSheet({ gtin14, onClose }: ScanResultSheetProps) {
   const { data: product, isLoading, isError } = useProductByBarcode(gtin14);
   const addToStack = useAddToStack();
+  const palette = getThemeColors(useColorScheme());
 
   return (
     <Modal visible={gtin14 != null} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable className="flex-1 justify-end bg-black/50" onPress={onClose}>
         <Pressable
-          className="gap-four rounded-t-3xl bg-bg p-four pb-six dark:bg-bg-dark"
+          className="gap-four rounded-t-3xl bg-surface p-four pb-six dark:bg-dark-surface"
           onPress={(e) => e.stopPropagation()}
         >
-          <View className="h-1 w-12 self-center rounded-full bg-muted/40" />
+          <View className="h-1 w-12 self-center rounded-full bg-border dark:bg-dark-border" />
 
           {isLoading ? (
             <View className="items-center py-six">
-              <ActivityIndicator />
+              <ActivityIndicator color={palette.textMuted} />
             </View>
           ) : isError || !product ? (
             <View className="gap-two py-four">
-              <Text className="text-lg font-semibold text-fg dark:text-fg-dark">
+              <Text className="text-lg font-semibold text-text dark:text-dark-text">
                 Product not found
               </Text>
-              <Text className="text-sm text-muted dark:text-muted-dark">
+              <Text className="text-sm text-text-muted dark:text-dark-text-muted">
                 No match for barcode {gtin14}.
               </Text>
             </View>
           ) : (
             <View className="gap-two">
-              <Text className="text-sm text-muted dark:text-muted-dark">{product.brand}</Text>
-              <Text className="text-xl font-bold text-fg dark:text-fg-dark">{product.name}</Text>
-              <Text className="text-sm text-muted dark:text-muted-dark">
+              <Text className="text-sm text-text-muted dark:text-dark-text-muted">
+                {product.brand}
+              </Text>
+              <Text className="text-xl font-bold text-text dark:text-dark-text">
+                {product.name}
+              </Text>
+              <Text className="text-sm text-text-muted dark:text-dark-text-muted">
                 {product.form}
                 {product.servingSize ? ` · ${product.servingSize}` : ''}
               </Text>
