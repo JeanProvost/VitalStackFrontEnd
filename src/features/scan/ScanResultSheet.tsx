@@ -57,7 +57,7 @@ export function ScanResultSheet({ gtin14, onClose }: ScanResultSheetProps) {
                 label="Add to my stack"
                 loading={addToStack.isPending}
                 onPress={() =>
-                  addToStack.mutate({ gtin14: product.gtin14 }, { onSuccess: onClose })
+                  addToStack.mutate({ supplementProductId: product.id }, { onSuccess: onClose })
                 }
               />
             </View>

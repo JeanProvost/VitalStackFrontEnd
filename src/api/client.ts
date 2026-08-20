@@ -14,12 +14,21 @@ export class ApiError extends Error {
   }
 }
 
-async function safeJson(res: Response): Promise<any> {
+async function readResponseBody(res: Response): Promise<unknown> {
+  const text = await res.text();
+  if (!text) return undefined;
+
   try {
-    return await res.json();
+    return JSON.parse(text) as unknown;
   } catch {
-    return undefined;
+    return text;
   }
+}
+
+function getErrorMessage(res: Response, body: unknown): string {
+  if (typeof body === 'string' && body) return body;
+  if (body && typeof body === 'object' && 'message' in body) return String(body.message);
+  return res.statusText || `Request failed (${res.status})`;
 }
 
 /**
@@ -48,12 +57,8 @@ async function request<T>(path: string, init: RequestInit = {}, allowRetry = tru
   }
 
   if (!res.ok) {
-    const body = await safeJson(res);
-    const message =
-      (body && typeof body === 'object' && 'message' in body && String(body.message)) ||
-      res.statusText ||
-      `Request failed (${res.status})`;
-    throw new ApiError(res.status, message, body);
+    const body = await readResponseBody(res);
+    throw new ApiError(res.status, getErrorMessage(res, body), body);
   }
 
   if (res.status === 204) return undefined as T;
@@ -75,8 +80,14 @@ async function tryRefresh(tokens: StoredTokens): Promise<boolean> {
 export const api = {
   get: <T>(path: string) => request<T>(path, { method: 'GET' }),
   post: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: 'POST', body: body === undefined ? undefined : JSON.stringify(body) }),
+    request<T>(path, {
+      method: 'POST',
+      body: body === undefined ? undefined : JSON.stringify(body),
+    }),
   put: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: 'PUT', body: body === undefined ? undefined : JSON.stringify(body) }),
+    request<T>(path, {
+      method: 'PUT',
+      body: body === undefined ? undefined : JSON.stringify(body),
+    }),
   delete: <T>(path: string) => request<T>(path, { method: 'DELETE' }),
 };
