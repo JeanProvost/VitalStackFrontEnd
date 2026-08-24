@@ -1,4 +1,4 @@
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { type ReactNode, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
@@ -114,16 +114,6 @@ export default function SignupScreen() {
 
   return (
     <Screen scroll edges={['top', 'left', 'right', 'bottom']} className="pb-four pt-three">
-      <Pressable
-        accessibilityLabel="Go back"
-        accessibilityRole="button"
-        hitSlop={8}
-        onPress={onBack}
-        className="h-12 w-12 items-center justify-center self-start rounded-full border border-border bg-surface active:opacity-70"
-      >
-        <Ionicons name="chevron-back" color={Colors.light.text} size={24} />
-      </Pressable>
-
       <View className="gap-five pt-five">
         <View className="gap-two">
           <Text className="text-3xl font-bold text-text">Create your account</Text>
