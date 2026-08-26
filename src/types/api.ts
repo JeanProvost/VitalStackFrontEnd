@@ -9,6 +9,7 @@ export interface Ingredient {
 
 /** Product returned by GET /api/products/barcode/{gtin14}. */
 export interface Product {
+  id: number;
   gtin14: string;
   name: string;
   brand: string;
@@ -31,12 +32,55 @@ export interface Supplement {
   addedAt: string; // ISO 8601
 }
 
-/** POST /api/stack — add a scanned product to the user's stack. */
-export interface AddToStackRequest {
-  gtin14: string;
-  dosage?: string;
-  schedule?: string;
-}
+export type ScheduleTimeBlock = 'Morning' | 'Afternoon' | 'Evening' | 'Night';
+
+/** POST /api/stack — add one catalog product to the authenticated user's stack. */
+export type AddToStackRequest = {
+  supplementProductId: number;
+  servingMultiplier?: number;
+  intendedTime?: ScheduleTimeBlock | null;
+  contextualInstruction?: string | null;
+};
+
+export type AddToStackResponse = {
+  userId: string;
+  supplementProductId: number | null;
+  supplementProduct: unknown | null;
+  customName: string | null;
+  cusomization: {
+    form: string | null;
+    dosage: string | null;
+    brand: string | null;
+    timeOfDayTarget: string | null;
+  };
+  intendedTime: ScheduleTimeBlock;
+  contextualInstruction: string | null;
+  servingMultiplier: number;
+  isActive: boolean;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SupplementAutocompleteSuggestion = {
+  id: number;
+  productName: string;
+  brandName: string | null;
+};
+
+export type IngredientSummary = {
+  name: string;
+  dosageAmount: number;
+  dosageUnit: string;
+};
+
+export type SupplementSearchResult = {
+  id: number;
+  productName: string;
+  brandName: string | null;
+  form: string;
+  ingredients: IngredientSummary[];
+};
 
 /** PUT /api/supplements/{id} — edit an existing stack entry. */
 export interface UpdateSupplementRequest {

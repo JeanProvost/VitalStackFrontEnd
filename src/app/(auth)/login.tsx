@@ -45,16 +45,6 @@ export default function LoginScreen() {
 
   return (
     <Screen scroll edges={['top', 'left', 'right', 'bottom']} className="pb-four pt-three">
-      <Pressable
-        accessibilityLabel="Go back"
-        accessibilityRole="button"
-        hitSlop={8}
-        onPress={onBack}
-        className="h-12 w-12 items-center justify-center self-start rounded-full border border-border bg-surface active:opacity-70"
-      >
-        <Ionicons name="chevron-back" color={Colors.light.text} size={24} />
-      </Pressable>
-
       <View className="pt-five">
         <View className="flex-row items-center gap-three">
           <Image
