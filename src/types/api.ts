@@ -66,6 +66,8 @@ export type SupplementAutocompleteSuggestion = {
   id: number;
   productName: string;
   brandName: string | null;
+  thumbnailUrl: string | null;
+  labelPdfUrl: string | null;
 };
 
 export type IngredientSummary = {
@@ -79,6 +81,8 @@ export type SupplementSearchResult = {
   productName: string;
   brandName: string | null;
   form: string;
+  thumbnailUrl: string | null;
+  labelPdfUrl: string | null;
   ingredients: IngredientSummary[];
 };
 

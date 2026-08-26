@@ -17,7 +17,13 @@ jest.mock('@/api/client', () => ({
 describe('supplement search', () => {
   it('trims and encodes autocomplete queries', async () => {
     const suggestions: SupplementAutocompleteSuggestion[] = [
-      { id: 123, productName: 'Magnesium Citrate', brandName: 'Example Brand' },
+      {
+        id: 123,
+        productName: 'Magnesium Citrate',
+        brandName: 'Example Brand',
+        thumbnailUrl: 'https://api.example.com/thumbnails/123.jpg',
+        labelPdfUrl: 'https://api.example.com/labels/123.pdf',
+      },
     ];
     jest.mocked(api.get).mockResolvedValue(suggestions);
 
